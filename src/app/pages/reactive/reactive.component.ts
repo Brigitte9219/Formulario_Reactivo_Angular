@@ -12,6 +12,7 @@ export class ReactiveComponent {
 
   constructor(private fb:FormBuilder){
     this.crearFormulario();
+    this.cargarDataAlFormulario();
   }
 
   get nombreNoValido(){
@@ -46,6 +47,23 @@ export class ReactiveComponent {
     })
   }
 
+
+  //Hay 2 formas de cargar la data con setValue y reset
+  //SetValue es obligatorio todos los datos o genera error
+  //reset es opcional todos los datos y no genera error
+  cargarDataAlFormulario(){
+    //this.forma.setValue({
+    this.forma.reset({
+      nombre:'brigitte',
+      apellido:'padilla',
+      correo:'brigitte@gmail.com',
+      direccion:{
+        distrito:'bogota',
+        ciudad:'bogota'
+      }
+    });
+  }
+
   guardar(){
     console.log(this.forma);
 
@@ -59,6 +77,8 @@ export class ReactiveComponent {
         }
       });
     }
+    //Posteo o envío del formulario - lo limpia
+    this.forma.reset();
   }
 
 }
