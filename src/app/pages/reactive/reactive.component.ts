@@ -87,6 +87,7 @@ export class ReactiveComponent {
 
     //CAMBIO DE UN CAMPO EN ESPECÍFICO
     this.forma.get('nombre')?.valueChanges.subscribe(console.log);
+    
   }
 
 
