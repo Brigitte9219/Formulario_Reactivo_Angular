@@ -87,14 +87,16 @@
             </td>
             <td>
               <button type="button"
-                      class="btn btn-danger">Borrar</button>
+                      class="btn btn-danger"
+                      (click)="borrarPasatiempo(i)">Borrar</button>
             </td>
           </tr>
         </tbody>
       </table>
 
       <button class="btn btn-primary mt-3 mb-5 btn-block"
-              type="button">+Agregar</button>
+              type="button"
+              (click)="agregarPasatiempo()">+Agregar</button>
     </div>
   </div>
 

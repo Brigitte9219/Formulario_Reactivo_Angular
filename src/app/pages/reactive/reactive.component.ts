@@ -15,10 +15,6 @@ export class ReactiveComponent {
     this.cargarDataAlFormulario();
   }
 
-  get pasatiempos(){
-    return this.forma.get('pasatiempos') as FormArray;
-  }
-
   get nombreNoValido(){
     return this.forma.get('nombre')?.invalid && this.forma.get('nombre')?.touched
   }
@@ -39,6 +35,9 @@ export class ReactiveComponent {
     return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched
   }
 
+  get pasatiempos(){
+    return this.forma.get('pasatiempos') as FormArray;
+  }
 
   crearFormulario(){
     this.forma = this.fb.group({
@@ -49,9 +48,7 @@ export class ReactiveComponent {
         distrito:['',Validators.required],
         ciudad:['', Validators.required]
       }),
-      pasatiempos: this.fb.array([
-        [],[],[],[],[]
-      ])
+      pasatiempos: this.fb.array([])
     })
   }
 
@@ -68,8 +65,17 @@ export class ReactiveComponent {
       direccion:{
         distrito:'bogota',
         ciudad:'bogota'
-      }
+      },
     });
+    ['Comer','Dormir'].forEach(valor => this.pasatiempos.push(this.fb.control(valor)));
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push( this.fb.control('Nuevo elemento', Validators.required));
+  }
+
+  borrarPasatiempo(i: number){
+    this.pasatiempos.removeAt(i);
   }
 
   guardar(){
