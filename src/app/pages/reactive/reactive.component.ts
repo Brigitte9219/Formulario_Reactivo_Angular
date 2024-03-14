@@ -14,6 +14,7 @@ export class ReactiveComponent {
   constructor(private fb:FormBuilder,
               private validadores:ValidadoresService){
     this.crearFormulario();
+    this.crearListeners();
     this.cargarDataAlFormulario();
   }
 
@@ -74,6 +75,18 @@ export class ReactiveComponent {
     },{
       Validators: this.validadores.passwordsIguales('pass1','pass2')
     });
+  }
+
+  crearListeners(){
+    //CAMBIOS DEL FORMULARIO
+    /*this.forma.valueChanges.subscribe(valor => {
+      console.log(valor);
+    });
+
+    this.forma.statusChanges.subscribe(status => console.log({status}));*/
+
+    //CAMBIO DE UN CAMPO EN ESPECÍFICO
+    this.forma.get('nombre')?.valueChanges.subscribe(console.log);
   }
 
 
